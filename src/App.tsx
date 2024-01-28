@@ -1,9 +1,9 @@
-import ProductCard from "./components/ProductCard"
+import ProductCard from "./components/product-card/ProductCard"
 
 function App() {
 
   return (
-    <div className=" border-2 border-red-600 border-dotted grid grid-cols-4 gap-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 m-5">
       <ProductCard />
       <ProductCard />
       <ProductCard />
@@ -17,4 +17,4 @@ function App() {
   )
 }
 
-export default App;
+export default App; 
