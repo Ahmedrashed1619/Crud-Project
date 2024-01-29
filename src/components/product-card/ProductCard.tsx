@@ -1,26 +1,37 @@
 import imgTest from '../../assets/images/Rectangle 49 (20).png';
-import Button from './Button';
-import Color from './Color';
-import Image from './Image';
+import IProduct from '../../interfaces/product';
+import { txtSlicer } from '../../utils/functions';
+import Button from '../Button/Button';
+import Color from '../Color/Color';
+import Image from '../Image/Image';
 
-const ProductCard = () => {
+interface IProps {
+  product: IProduct
+}
+const ProductCard = ({product}: IProps) => {
+
+  const {imageURL, title, description, price, colors} = product
+
   return (
     <div className="border-2 p-2 rounded-md">
-      <Image imageUrl={imgTest} alt={"product-name"} className={'rounded-md mb-2 w-full max-h-64'} />
-      <h2 className='font-semibold'>Iphone 14 pro max</h2>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur, alias?</p>
+      <Image imageUrl={imageURL ? imageURL : imgTest} alt={title} className={'rounded-md mb-2 w-full h-64'} />
+      <h2 className='font-semibold'>{title}</h2>
+      <p>{txtSlicer(description)}</p>
       <div className="flex items-center my-4 space-x-2">
-        <Color className={'bg-yellow-600'} />
+        {colors.map((color,i) => (
+          <Color key={i} className={color} />
+        ))}
+        {/* <Color className={'bg-yellow-600'} />
         <Color className={'bg-red-600'} />
-        <Color className={'bg-blue-600'} />
+        <Color className={'bg-blue-600'} /> */}
       </div>
       <div className="flex items-center justify-between mb-3">
-        <h4>$500.000</h4>
-        <Image imageUrl={imgTest} alt={"product-name"} className={'w-10 h-10 object-center rounded-full'} />
+        <h4 className='font-semibold'>${price}</h4>
+        <Image imageUrl={imageURL ? imageURL : imgTest} alt={title} className={'w-10 h-10 object-center rounded-full'} />
       </div>
       <div className="flex items-center justify-between space-x-4">
-        <Button title={'Edit'} className={'bg-indigo-700'} />
-        <Button title={'Delete'} className={'bg-red-700'} />
+        <Button className={'bg-indigo-700'} width={'w-full'} >Edit</Button>
+        <Button className={'bg-red-700'} >Delete</Button>
       </div>
     </div>
   )
