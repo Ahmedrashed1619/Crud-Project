@@ -10,14 +10,14 @@ interface IProps {
 }
 const ProductCard = ({product}: IProps) => {
 
-  const {imageURL, title, description, price, colors} = product
+  const {imageURL, title, description, price, colors, category} = product
 
   return (
-    <div className="border-2 p-2 rounded-md">
-      <Image imageUrl={imageURL ? imageURL : imgTest} alt={title} className={'rounded-md mb-2 w-full h-64'} />
+    <div className="max-w-sm mx-auto border-2 p-2 rounded-md">
+      <Image imageUrl={imageURL ? imageURL : imgTest} alt={title} className={'rounded-md mb-2 w-full h-56 xl:h-52'} />
       <h2 className='font-semibold'>{title}</h2>
       <p>{txtSlicer(description)}</p>
-      <div className="flex items-center my-4 space-x-2">
+      <div className="flex flex-wrap items-center mt-4">
         {colors.length > 0 ?
           colors.map((color, i) => (
             <Color key={i} className={color} />
@@ -28,7 +28,7 @@ const ProductCard = ({product}: IProps) => {
       </div>
       <div className="flex items-center justify-between mb-3">
         <h4 className='font-semibold'>${price}</h4>
-        <Image imageUrl={imageURL ? imageURL : imgTest} alt={title} className={'w-10 h-10 object-center rounded-full'} />
+        <Image imageUrl={category.imageURL ? category.imageURL : imgTest} alt={category.name} className={'w-10 h-10 object-center rounded-full'} />
       </div>
       <div className="flex items-center justify-between space-x-4">
         <Button className={'bg-indigo-700'} >Edit</Button>
