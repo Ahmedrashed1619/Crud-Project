@@ -14,10 +14,10 @@ const ProductCard = ({product}: IProps) => {
 
   return (
     <div className="max-w-sm mx-auto border-2 p-2 rounded-md">
-      <Image imageUrl={imageURL ? imageURL : imgTest} alt={title} className={'rounded-md mb-2 w-full h-56 xl:h-52'} />
-      <h2 className='font-semibold'>{title}</h2>
-      <p>{txtSlicer(description)}</p>
-      <div className="flex flex-wrap items-center mt-4">
+      <Image imageUrl={imageURL ? imageURL : imgTest} alt={title} className="rounded-md h-56 w-full lg:object-cover" />
+      <h3 className='text-lg font-semibold my-2' title={title}>{txtSlicer(title, 25)}</h3>
+      <p className='text-sm text-gray-500 break-words mb-4' title={description}>{txtSlicer(description, 80)}</p>
+      <div className="flex flex-wrap items-center mb-2">
         {colors.length > 0 ?
           colors.map((color, i) => (
             <Color key={i} className={color} />
@@ -26,11 +26,14 @@ const ProductCard = ({product}: IProps) => {
           <Color className={''} />
         }
       </div>
-      <div className="flex items-center justify-between mb-3">
-        <h4 className='font-semibold'>${price}</h4>
-        <Image imageUrl={category.imageURL ? category.imageURL : imgTest} alt={category.name} className={'w-10 h-10 object-center rounded-full'} />
+      <div className="flex items-center justify-between">
+        <span className="text-lg text-indigo-600 font-semibold">${price}</span>
+        <div className="flex items-center gap-2">
+          <Image imageUrl={category.imageURL ? category.imageURL : imgTest} alt={category.name} className={'w-10 h-10 object-center rounded-full'} />
+          <span className="text-sm text-indigo-600 font-semibold" title={category.name}>{category.name}</span>
+        </div>
       </div>
-      <div className="flex items-center justify-between space-x-4">
+      <div className="flex items-center justify-between space-x-3 mt-3">
         <Button className={'bg-indigo-700'} >Edit</Button>
         <Button className={'bg-red-700'} >Delete</Button>
       </div>
