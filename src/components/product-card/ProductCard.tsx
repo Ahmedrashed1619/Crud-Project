@@ -1,20 +1,23 @@
 import imgTest from '../../assets/images/default-img.png';
 import IProduct from '../../interfaces/product';
 import { txtSlicer } from '../../utils/functions';
-import Button from '../Button/Button';
-import Color from '../Color/Color';
-import Image from '../Image/Image';
+import Button from '../ui/Button/Button';
+import Color from '../ui/Color/Color';
+import Image from '../ui/Image/Image';
 
 interface IProps {
-  product: IProduct
+  product: IProduct,
+  openModal: () => void
 }
-const ProductCard = ({product}: IProps) => {
+const ProductCard = ({product, openModal}: IProps) => {
 
   const {imageURL, title, description, price, colors, category} = product
 
   return (
     <div className="max-w-sm mx-auto border-2 p-2 rounded-md">
-      <Image imageUrl={imageURL ? imageURL : imgTest} alt={title} className="rounded-md h-56 w-full lg:object-cover" />
+      <div className="overflow-hidden">
+        <Image imageUrl={imageURL ? imageURL : imgTest} alt={title} className="rounded-md h-56 w-full lg:object-cover transition-all duration-1000 hover:scale-125" />
+      </div>
       <h3 className='text-lg font-semibold my-2' title={title}>{txtSlicer(title, 25)}</h3>
       <p className='text-sm text-gray-500 break-words mb-4' title={description}>{txtSlicer(description, 80)}</p>
       <div className="flex flex-wrap items-center mb-2">
@@ -34,10 +37,10 @@ const ProductCard = ({product}: IProps) => {
         </div>
       </div>
       <div className="flex items-center justify-between space-x-3 mt-3">
-        <Button className={'bg-indigo-700'} >Edit</Button>
-        <Button className={'bg-red-700'} >Delete</Button>
+        <Button className={'bg-indigo-700 hover:bg-indigo-500'} onClick={openModal} >Edit</Button>
+        <Button className={'bg-red-700 hover:bg-red-900'} >Delete</Button>
       </div>
-    </div>
+    </div>    
   )
 }
 

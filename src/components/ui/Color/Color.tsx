@@ -1,4 +1,4 @@
-import ColorProps from "../../interfaces/color"
+import ColorProps from "../../../interfaces/color"
 
 function Color({className}: ColorProps) {
   return (

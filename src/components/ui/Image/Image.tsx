@@ -1,4 +1,4 @@
-import ImageProps from "../../interfaces/image"
+import ImageProps from "../../../interfaces/image"
 
 
 function Image({imageUrl, alt, className}:ImageProps) {
