@@ -1,8 +1,8 @@
-import ButtonProps from "../../../interfaces/button"
+import { IButtonProps } from "../../../interfaces"
 
-function Button({children, className, width = 'w-full', ...rest}: ButtonProps) {
+const Button = ({children, className, width = 'w-full', ...rest}: IButtonProps) => {
   return (
-    <button className={`${className} ${width} text-center text-white font-medium p-2 rounded-xl transition-all duration-300`} {...rest}>
+    <button className={`${className} ${width} text-center text-white font-medium p-2 rounded-lg transition-all duration-300`} {...rest}>
       {children}
     </button>
   )

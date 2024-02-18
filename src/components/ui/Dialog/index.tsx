@@ -1,8 +1,8 @@
 import { Dialog, Transition } from '@headlessui/react'
 import { Fragment } from 'react'
-import ImodalProps from '../../../interfaces/modal';
+import { IModalProps } from '../../../interfaces';
 
-const MyDialog = ({isOpen, closeModal, title, children}: ImodalProps) => {
+const MyDialog = ({isOpen, closeModal, title, children}: IModalProps) => {
 
     return (
         <Transition appear show={isOpen} as={Fragment}>
@@ -30,7 +30,7 @@ const MyDialog = ({isOpen, closeModal, title, children}: ImodalProps) => {
                             leaveFrom="opacity-100 scale-100"
                             leaveTo="opacity-0 scale-95"
                         >
-                            <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                            <Dialog.Panel className="w-full max-w-md transform overflow-hidden rounded-xl bg-white p-6 text-left align-middle shadow-xl transition-all">
                                 {title && <Dialog.Title
                                         as="h3"
                                         className="text-lg font-medium leading-6 text-gray-900"

@@ -1,12 +1,12 @@
 import imgTest from '../../assets/images/default-img.png';
-import IProduct from '../../interfaces/product';
+import IProductProps from '../../interfaces';
 import { txtSlicer } from '../../utils/functions';
 import Button from '../ui/Button/Button';
 import Color from '../ui/Color/Color';
 import Image from '../ui/Image/Image';
 
 interface IProps {
-  product: IProduct,
+  product: IProductProps,
   openModal: () => void
 }
 const ProductCard = ({product, openModal}: IProps) => {
