@@ -44,7 +44,7 @@ function App() {
 
   const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    // const { title, description, imageURL, price } = errors
+
     setProduct({
       ...product,
       [name]: value
@@ -52,7 +52,7 @@ function App() {
 
     setErrors({
       ...errors,
-      [name]: value ? '' : 'jjjjjjjjjjjjjjj'
+      [name]: ''
     })
   }
 
