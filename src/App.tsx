@@ -47,6 +47,9 @@ function App() {
 
   const [tempColors, setTempColors] = useState<string[]>([]);
 
+  console.log(tempColors);
+  
+
 
   // --------------------RENDER-----------------
   const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
