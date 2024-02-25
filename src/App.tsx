@@ -1,14 +1,17 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 import ProductCard from "./components/product-card/ProductCard"
 import MyDialog from "./components/ui/Dialog";
-import { formInputsList, productList } from "./data";
+import { colorsList, formInputsList, productList } from "./data";
 import Button from "./components/ui/Button/Button";
 import Input from "./components/ui/Input";
 import IProductProps from "./interfaces";
 import { productValidation } from "./validation";
 import ErrorMsg from "./components/ui/ErrorMsg";
+import Color from "./components/ui/Color/Color";
+
 function App() {
 
+  // --------------------STATE-----------------
   const [isOpen, setIsOpen] = useState(false)
 
   function closeModal() {
@@ -30,6 +33,7 @@ function App() {
       imageURL: ''
     }
   }
+
   const defaultErrors = {
     title: '',
     description: '',
@@ -39,9 +43,12 @@ function App() {
 
   const [product, setProduct] = useState<IProductProps>(defaultProduct);
 
-  const [errors, setErrors] = useState(defaultErrors)
-  
+  const [errors, setErrors] = useState(defaultErrors);
 
+  const [tempColors, setTempColors] = useState<string[]>([]);
+
+
+  // --------------------RENDER-----------------
   const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
@@ -55,7 +62,6 @@ function App() {
       [name]: ''
     })
   }
-
 
   const renderProductsList = productList.map(product => 
     <ProductCard
@@ -75,12 +81,11 @@ function App() {
     </div>
   )
 
+  const renderColorsList = colorsList.map(color => <Color key={color} color={color} onClick={() => setTempColors(prev => [...prev, color])}/>)
 
   const submitHandler = (event: FormEvent<HTMLFormElement>): void  => {
     event.preventDefault();
-    
     const { title, description, imageURL, price} = product;
-
     const errors = productValidation({
       title,
       description,
@@ -92,11 +97,10 @@ function App() {
 
     if(hasErrorMsg){
       console.log('trueeee');
+      return
     }
-    else {
-      setErrors(errors);
-    }
-    
+
+    setErrors(errors);
   }
 
   const onCloseHandler = (): void => {
@@ -114,6 +118,9 @@ function App() {
       <MyDialog isOpen={isOpen} closeModal={closeModal} title={'Add a new Product'}>
         <form className="space-y-4" onSubmit={submitHandler}>
           {renderFormInputsList}
+          <div className="flex flex-wrap items-center mb-2">
+            {renderColorsList}
+          </div>
           <div className="flex items-center justify-between space-x-3">
             <Button type="submit" className={'bg-indigo-700 hover:bg-indigo-500'}>Submit</Button>
             <Button type="reset" className={'bg-gray-400 hover:bg-gray-600'} onClick={onCloseHandler} >cancel</Button>

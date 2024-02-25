@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes, ReactNode } from "react";
+import { ButtonHTMLAttributes, HTMLAttributes, ReactNode } from "react";
 
 export default interface IProductProps {
     id?: string | undefined,
@@ -25,8 +25,8 @@ export interface IImageProps {
     className: string
 }
 
-export interface IColorProps {
-    className: string
+export interface IColorProps extends HTMLAttributes<HTMLSpanElement> {
+    color: string
 }
 
 export interface IModalProps {

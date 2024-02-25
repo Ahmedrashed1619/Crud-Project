@@ -23,10 +23,10 @@ const ProductCard = ({product, openModal}: IProps) => {
       <div className="flex flex-wrap items-center mb-2">
         {colors.length > 0 ?
           colors.map((color, i) => (
-            <Color key={i} className={color} />
+            <Color key={i} color={color} />
           ))
           :
-          <Color className={''} />
+          <Color color={''} />
         }
       </div>
       <div className="flex items-center justify-between">
