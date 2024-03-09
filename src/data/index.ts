@@ -147,7 +147,6 @@ export const productList: IProductProps[] = [
 ];
 
 
-
 export const formInputsList: IFormProps[] = [
   {
     id: "title",

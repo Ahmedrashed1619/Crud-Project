@@ -84,10 +84,18 @@ function App() {
     </div>
   )
 
-  const renderColorsList = colorsList.map(color => <Color key={color} color={color} onClick={() => setTempColors(prev => [...prev, color])}/>)
+  const renderColorsList = colorsList.map(color =>
+    <Color
+      key={color}
+      color={color}
+      onClick={() => setTempColors(prev => [...prev, color])}
+    />
+  )
 
-  const submitHandler = (event: FormEvent<HTMLFormElement>): void  => {
-    event.preventDefault();
+
+
+  const submitHandler = (e: FormEvent<HTMLFormElement>): void  => {
+    e.preventDefault();
     const { title, description, imageURL, price} = product;
     const errors = productValidation({
       title,
@@ -100,6 +108,7 @@ function App() {
 
     if(hasErrorMsg){
       console.log('trueeee');
+      // send a request api to server
       return
     }
 
@@ -126,7 +135,7 @@ function App() {
           </div>
           <div className="flex items-center justify-between space-x-3">
             <Button type="submit" className={'bg-indigo-700 hover:bg-indigo-500'}>Submit</Button>
-            <Button type="reset" className={'bg-gray-400 hover:bg-gray-600'} onClick={onCloseHandler} >cancel</Button>
+            <Button type="reset" className={'bg-gray-400 hover:bg-gray-600'} onClick={onCloseHandler}>cancel</Button>
           </div>
         </form>
       </MyDialog>
