@@ -108,15 +108,14 @@ function App() {
       price
     })
     
-    const hasErrorMsg = Object.values(errors).every(val => val === '');
+    const hasErrorMsg = Object.values(errors).every(val => val === '');    
 
     if(hasErrorMsg){
-      console.log('trueeee');
       // send a request api to server
-      setProducts(prev => [...prev, {...product, colors: tempColors}])
+      setProducts(prev => [{...product, id: `${products.length + 1}`, colors: tempColors}, ...prev]);
       setProduct(defaultProduct);
-      setTempColors([])
-      closeModal()
+      setTempColors([]);
+      closeModal();
     }
 
     setErrors(errors);
